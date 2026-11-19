@@ -1,0 +1,130 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class DynamicArray {
+  - data_ : std::string*
+  - size_ : int
+  - capacity_ : int
+  - ensureCapacity(needed : int) : void
+  + DynamicArray(initialCapacity : int = 8)
+  + ~DynamicArray()
+  + pushBack(value : const std::string&) : void
+  + popBack() : void
+  + get(index : int) : std::string
+  + set(index : int, value : const std::string&) : void
+  + removeAt(index : int) : void
+  + clear() : void
+  + getSize() : int
+  + getCapacity() : int
+  + isEmpty() : bool
+  + print(os : std::ostream&) : void
+}
+
+class SinglyList {
+  - head_ : Node*
+  - tail_ : Node*
+  - size_ : int
+  + SinglyList()
+  + ~SinglyList()
+  + pushFront(value : const std::string&) : void
+  + pushBack(value : const std::string&) : void
+  + popFront() : void
+  + popBack() : void
+  + find(value : const std::string&) : bool
+  + remove(value : const std::string&) : void
+  + clear() : void
+  + getSize() : int
+  + isEmpty() : bool
+  + get(index : int) : std::string
+  + print(os : std::ostream&) : void
+}
+
+class DoublyList {
+  - head_ : Node*
+  - tail_ : Node*
+  - size_ : int
+  + DoublyList()
+  + ~DoublyList()
+  + pushFront(value : const std::string&) : void
+  + pushBack(value : const std::string&) : void
+  + popFront() : void
+  + popBack() : void
+  + find(value : const std::string&) : bool
+  + remove(value : const std::string&) : void
+  + clear() : void
+  + getSize() : int
+  + isEmpty() : bool
+  + printForward(os : std::ostream&) : void
+  + printBackward(os : std::ostream&) : void
+}
+
+class Stack {
+  - head_ : Node*
+  - count_ : int
+  + Stack()
+  + ~Stack()
+  + push(value : const std::string&) : void
+  + pop() : void
+  + clear() : void
+  + peek() : std::string
+  + size() : int
+  + isEmpty() : bool
+}
+
+class Queue {
+  - head_ : Node*
+  - tail_ : Node*
+  - count_ : int
+  + Queue()
+  + ~Queue()
+  + push(value : const std::string&) : void
+  + pop() : void
+  + clear() : void
+  + front() : std::string
+  + size() : int
+  + isEmpty() : bool
+}
+
+class HashTable {
+  - buckets_ : std::array<Node*, 1021>
+  - count_ : int
+  - hashString(s : const std::string&) : int
+  + HashTable()
+  + ~HashTable()
+  + add(key : const std::string&) : void
+  + remove(key : const std::string&) : void
+  + contains(key : const std::string&) : bool
+  + clear() : void
+  + size() : int
+  + isEmpty() : bool
+}
+
+class CompleteBinaryTree {
+  - root_ : TreeNode*
+  - count_ : int
+  - deleteSubtree(node : TreeNode*) : void
+  + CompleteBinaryTree()
+  + ~CompleteBinaryTree()
+  + insert(value : int) : void
+  + find(value : int) : bool
+  + isComplete() : bool
+  + clear() : void
+  + size() : int
+  + isEmpty() : bool
+}
+
+class Serializer {
+  + {static} saveBinary(arr : const DynamicArray&, filename : const std::string&) : bool
+  + {static} loadBinary(filename : const std::string&) : DynamicArray
+}
+
+class TextSerializer {
+  - {static} escape(s : const std::string&) : std::string
+  - {static} unescape(s : const std::string&) : std::string
+  + {static} saveText(list : const SinglyList&, filename : const std::string&) : bool
+  + {static} loadText(filename : const std::string&) : SinglyList
+}
+
+Serializer ..> DynamicArray : бинарная сериализация
+TextSerializer ..> SinglyList : текстовая сериализация
+@enduml

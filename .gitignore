@@ -1,0 +1,7 @@
+lab3/build/
+*.gcda
+*.gcno
+*.info
+*.bin
+lab3-go/coverage.out
+lab3-go/coverage.html
